@@ -2,6 +2,7 @@ package lengthOfLongestSubstring_3;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class Solution {
     public int lengthOfLongestSubstring(String s) {
@@ -19,6 +20,7 @@ public class Solution {
         }
         return longestLen;
     }
+
 
     public static void main(String[] args) {
         Solution s = new Solution();
