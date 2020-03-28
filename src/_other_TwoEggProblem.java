@@ -41,9 +41,31 @@ public class _other_TwoEggProblem {
 
     }
 
+
+    public int getResult2(int t, int n){
+        int[][] dp = new int[t+1][n+1];
+        for (int i = 1; i <= n; i++){
+            dp[1][i] = 1;
+            dp[i][1] = i;
+        }
+
+        for (int nn = 2; nn <= n; nn++) {
+            for (int tt = 2; tt <= t; tt++) {
+                int minK = Integer.MAX_VALUE;
+                for (int k = 1; k < tt; k++){
+                    int tmp = Math.max(dp[(k - 1)][(nn-1)], dp[(tt - k)][nn]) + 1;
+                    minK = Math.min(minK, tmp);
+                }
+                dp[tt][nn] = minK;
+            }
+        }
+        return dp[t][n];
+
+    }
+
     public static void main(String[] args) {
         _other_TwoEggProblem otherTwoEggProblem = new _other_TwoEggProblem();
-        System.out.printf(String.valueOf(otherTwoEggProblem.getResult(50,10)));
+        System.out.printf(String.valueOf(otherTwoEggProblem.getResult2(50,10)));
     }
 
 
