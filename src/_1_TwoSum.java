@@ -14,18 +14,25 @@
 // 
 //
 
-class _1_TwoSum {
-    public int[] twoSum(int[] nums, int target) {
-        int[] result = new int[2];
+import java.util.Arrays;
 
-        for (int i = 0; i < nums.length - 1; i++) {
+class _1_TwoSum {
+    public int[] getResult(int[] nums, int target){
+        for (int i=0; i < nums.length; i++){
             for (int j = i+1; j < nums.length; j++) {
-                if (nums[i] + nums[j] == target){
-                    result[0] = i;
-                    result[1] = j;
+                if (target == nums[i] + nums[j]){
+                    return new int[]{i,j};
                 }
             }
         }
-        return result;
+
+        return null;
+    }
+
+    public static void main(String[] args) {
+        int[] nums = new int[]{2, 7, 11, 15};
+        int target = 9;
+        _1_TwoSum twoSum = new _1_TwoSum();
+        System.out.println(Arrays.toString(twoSum.getResult(nums, target)));
     }
 }

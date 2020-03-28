@@ -21,43 +21,37 @@
  */
 class _2_AddTwoNumbers {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        int carry = 0;
         ListNode result = new ListNode(0);
 
-        ListNode dummy = result;
+        ListNode cursor = result;
 
-        ListNode p = l1;
-        ListNode q = l2;
+        int carry = 0;
+        while(l1 != null || l2 != null){
 
-        while (p != null || q != null) {
-            int x = p == null ? 0 : p.val;
-            int y = q == null ? 0 : q.val;
+            int x = l1 == null ? 0 : l1.val;
+            int y = l2 == null ? 0 : l2.val;
 
-            int sum = carry+x + y;
+            int tmp = carry + x + y;
+            carry = tmp/10;
+            cursor.next = new ListNode(tmp%10);
+            cursor = cursor.next;
 
-            carry = sum/10;
-
-            dummy.next = new ListNode(sum%10);
-            p = p == null ? null : p.next;
-            q = q == null ? null : q.next;
-
-            dummy = dummy.next;
+            l1 = l1 == null ? null : l1.next;
+            l2 = l2 == null ? null : l2.next;
         }
-
-        if (carry!=0){
-            dummy.next = new ListNode(carry);
+        if (carry != 0){
+            cursor.next = new ListNode(carry);
         }
 
         return result.next;
+
     }
+
 
 
     public class ListNode {
         int val;
         ListNode next;
-
-        public ListNode(int x) {
-            val = x;
-        }
+        ListNode(int x) { val = x; }
     }
 }

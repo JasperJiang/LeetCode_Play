@@ -37,18 +37,31 @@ import java.util.Map;
 
 public class _3_LengthOfLongestSubstring {
     public int lengthOfLongestSubstring(String s) {
-        int len = s.length();
-        int longestLen = 0;
-        Map<Character,Integer> map = new HashMap<>();
-
-        for (int start = 0, end = 0; end<len; end++){
-            Character c = s.charAt(end);
-            if (map.containsKey(c)){
-                start = Math.max(map.get(c)+1,start);
-            }
-            longestLen = Math.max(longestLen,end-start+1);
-            map.put(c,end);
+        if (s.length() == 0){
+            return 0;
         }
-        return longestLen;
+
+        int result = Integer.MIN_VALUE;
+        Map<Character, Integer> cache = new HashMap<>();
+        int i = 0;
+        for (int j = i; j < s.length(); j++) {
+            Character character = s.charAt(j);
+            if (cache.containsKey(character)){
+                if (cache.get(character)>=i){
+                    i = cache.get(character)+1;
+                }
+            }
+            result = Math.max(result, j-i+1);
+            cache.put(character, j);
+        }
+
+        return result;
+    }
+
+    public static void main(String[] args) {
+        _3_LengthOfLongestSubstring lengthOfLongestSubstring = new _3_LengthOfLongestSubstring();
+        String str = "abcabcbb";
+
+        System.out.println(lengthOfLongestSubstring.lengthOfLongestSubstring(str));
     }
 }
