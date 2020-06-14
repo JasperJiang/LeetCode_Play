@@ -1,5 +1,10 @@
 import java.util.Arrays;
 
+/**
+ * 枚举加二分法
+ * 找到value所对应在数组的位置，大于value的所有值全都变为value所以综合就等于所有小于value的和加上value位置之后的值*个数
+ * sum = a[0] + a[1] + ... + a[n-1] + value*(len - i)
+ */
 public class _1300_findBestValue {
 
     public int findBestValue(int[] arr, int target){
