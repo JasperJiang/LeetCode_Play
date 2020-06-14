@@ -12,7 +12,7 @@ public class _1300_findBestValue {
             //二分查找value在array中的位置
             int index = Arrays.binarySearch(arr, value);
             //https://blog.csdn.net/cxhply/article/details/49423501
-            //搜索值不是数组元素，且在数组范围内，从1开始计数，得“ - 插入点索引值(后一个数的下标)”；
+            //搜索值不是数组元素"- 插入点之后的下标"
             if (index < 0) {
                 index = -index - 1;
             }
